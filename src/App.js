@@ -15,10 +15,16 @@ class App {
     if (this.input.startsWith('//')) {
       const customIndex = this.input.indexOf('\\n'); 
       const customSeparator = this.input.slice(2,customIndex);
-      const separatedIndex = this.input.slice(customIndex + 2).split(customSeparator);
-      return separatedIndex
+      const separatedArray = this.input.slice(customIndex + 2).split(customSeparator);
+      return separatedArray
     }
     return this.input.split(/,|:/);
+  }
+
+  calculateSum() {
+    const separatedArray = this.splitInput();
+    const resultSum = separatedArray.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+    return resultSum;
   }
 }
 
