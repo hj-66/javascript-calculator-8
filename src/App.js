@@ -4,6 +4,7 @@ import { INPUT_MESSAGE } from "./constants.js";
 class App {
   async run() {
     await this.getInput();
+    Console.print(this.calculateSum());
   }
 
   async getInput() {
