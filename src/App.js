@@ -11,6 +11,7 @@ class App {
   }
 
   splitInput() {
+    if (!this.input) return [];
     if (this.input.startsWith('//')) {
       const customIndex = this.input.indexOf('\\n'); 
       const customSeparator = this.input.slice(2,customIndex);
