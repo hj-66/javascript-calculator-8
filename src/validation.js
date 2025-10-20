@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE } from "./constants.js";
 
-export function validateAllowedCharacters(numbersPart, customDelimiter) {
+export const validateAllowedCharacters = (numbersPart, customDelimiter) => {
   let pattern;
   if (customDelimiter) {
     const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -14,13 +14,13 @@ export function validateAllowedCharacters(numbersPart, customDelimiter) {
   }
 }
 
-export function validateIsNumber(str) {
+export const validateIsNumber = (str) => {
   if (!/^\d+$/.test(str)) {
     throw new Error(ERROR_MESSAGE.NUMBER_ERROR_MESSAGE);
   }
 }
 
-export function validateCustomDelimiterSyntax(input) {
+export const validateCustomDelimiterSyntax = (input) => {
   if (input.startsWith('//')) {
     if (!input.includes('\\n')) {
       throw new Error(ERROR_MESSAGE.CUSTOMSETTING_ERROR_MESSAGE);
