@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "./constants";
+import { ERROR_MESSAGE } from "./constants.js";
 
 export function validateAllowedCharacters(input, customDelimiter = null) {
 
@@ -19,11 +19,11 @@ export function validateIsNumber(str) {
 
 export function validateCustomDelimiterSyntax(input) {
   if (input.startsWith('//')) {
-    if (!input.includes('\n')) {
+    if (!input.includes('\\n')) {
       throw new Error(ERROR_MESSAGE.CUSTOMSETTING_ERROR_MESSAGE);
     }
 
-    const delimiterPart = input.split('\n')[0];
+    const delimiterPart = input.split('\\n')[0];
 
     const match = /^\/\/(.)$/.exec(delimiterPart);
     if (!match) {

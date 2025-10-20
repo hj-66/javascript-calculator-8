@@ -1,10 +1,15 @@
 import { Console } from "@woowacourse/mission-utils";
-import { INPUT_MESSAGE } from "./constants.js";
+import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "./constants.js";
+import { validateAllowedCharacters, validateCustomDelimiterSyntax, validateIsNumber } from "./validation.js";
 
 class App {
   async run() {
+    try {
     await this.getInput();
-    Console.print(this.calculateSum());
+    Console.print(OUTPUT_MESSAGE.OUTPUT_RESULT + this.calculateSum());
+    } catch (error) {
+      throw error;
+    }
   }
 
   async getInput() {
@@ -13,17 +18,24 @@ class App {
 
   splitInput() {
     if (!this.input) return [];
-    if (this.input.startsWith('//')) {
-      const customIndex = this.input.indexOf('\\n'); 
-      const customSeparator = this.input.slice(2,customIndex);
-      const separatedArray = this.input.slice(customIndex + 2).split(customSeparator);
-      return separatedArray
+     const customDelimiter = validateCustomDelimiterSyntax(this.input);
+
+
+    if (customDelimiter) {
+      const numbersPart = this.input.split('\\n')[1];
+      validateAllowedCharacters(numbersPart, customDelimiter);
+      return numbersPart.split(customDelimiter);
     }
+
+    validateAllowedCharacters(this.input);
     return this.input.split(/,|:/);
   }
 
   calculateSum() {
     const separatedArray = this.splitInput();
+    separatedArray.forEach((value) => {
+      validateIsNumber(value);
+    });
     const resultSum = separatedArray.reduce((a, b) => parseInt(a) + parseInt(b), 0);
     return resultSum;
   }
