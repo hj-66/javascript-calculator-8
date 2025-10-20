@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { INPUT_MESSAGE, OUTPUT_MESSAGE } from './constants.js';
+import { MESSAGES } from './constants.js';
 import {
   validateAllowedCharacters,
   validateCustomDelimiterSyntax,
@@ -12,14 +12,14 @@ class App {
       await this.getInput();
       const numbers = this.parseInputToNumbers();
       const sum = this.calculateSum(numbers);
-      Console.print(`${OUTPUT_MESSAGE.OUTPUT_RESULT}${sum}`);
+      Console.print(`${MESSAGES.OUTPUT.OUTPUT_RESULT}${sum}`);
     } catch (error) {
       throw error;
     }
   }
 
   async getInput() {
-    this.input = await Console.readLineAsync(INPUT_MESSAGE.INPUT_STRING);
+    this.input = await Console.readLineAsync(MESSAGES.INPUT.INPUT_STRING);
   }
 
   parseInputToNumbers() {
