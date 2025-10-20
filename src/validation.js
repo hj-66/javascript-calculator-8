@@ -1,13 +1,10 @@
 import { ERROR_MESSAGE } from "./constants.js";
 
 export const validateAllowedCharacters = (numbersPart, customDelimiter) => {
-  let pattern;
-  if (customDelimiter) {
-    const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    pattern = new RegExp(`[^0-9${escapeRegex(customDelimiter)}]`);
-  } else {
-    pattern = /[^0-9,:]/;
-  }
+  const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = customDelimiter
+    ? new RegExp(`[^0-9${escapeRegex(customDelimiter)}]`)
+    : /[^0-9,:]/;
 
   if (pattern.test(numbersPart)) {
     throw new Error(ERROR_MESSAGE.CHARACTER_ERROR_MESSAGE);
