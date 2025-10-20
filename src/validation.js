@@ -12,7 +12,8 @@ export const validateAllowedCharacters = (numbersPart, customDelimiter) => {
 }
 
 export const validateIsNumber = (str) => {
-  if (!/^\d+$/.test(str)) {
+  const isValidNumber = /^\d+$/.test(str);
+  if (!isValidNumber) {
     throw new Error(ERROR_MESSAGE.NUMBER_ERROR_MESSAGE);
   }
 }
