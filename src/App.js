@@ -8,13 +8,13 @@ import {
 
 class App {
   async run() {
-    try {
+  try {
     await this.getInput();
-    Console.print(OUTPUT_MESSAGE.OUTPUT_RESULT + this.calculateSum());
-    } catch (error) {
-      throw error;
-    }
+    Console.print(`${OUTPUT_MESSAGE.OUTPUT_RESULT}${this.calculateSum()}`);
+  } catch (error) {
+    throw error;
   }
+}
 
   async getInput() {
     this.input = await Console.readLineAsync(INPUT_MESSAGE.INPUT_STRING);
