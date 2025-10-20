@@ -19,26 +19,26 @@ export const validateIsNumber = (str) => {
 }
 
 export const validateCustomDelimiterSyntax = (input) => {
-  if (input.startsWith('//')) {
-    if (!input.includes('\\n')) {
-      throw new Error(ERROR_MESSAGE.CUSTOMSETTING_ERROR_MESSAGE);
-    }
+  const hasCustomDelimiter = input.startsWith("//");
+  if (!hasCustomDelimiter) return null;
 
-    const delimiterPart = input.split('\\n')[0];
-    const match = /^\/\/(.+)$/.exec(delimiterPart);
-
-    if (!match) {
-      throw new Error(ERROR_MESSAGE.CUSTOMSETTING_ERROR_MESSAGE);
-    }
-
-    const delimiter = match[1];
-
-    if (/^\d+$/.test(delimiter)) {
-      throw new Error(ERROR_MESSAGE.CUSTOM_ERROR_MESSAGE);
-    }
-
-    return delimiter;
+  const hasNewLine = input.includes("\\n");
+  if (!hasNewLine) {
+    throw new Error(ERROR_MESSAGE.CUSTOMSETTING_ERROR_MESSAGE);
   }
 
-  return null;
+  const [delimiterPart] = input.split("\\n");
+  const match = /^\/\/(.+)$/.exec(delimiterPart);
+
+  if (!match) {
+    throw new Error(ERROR_MESSAGE.CUSTOMSETTING_ERROR_MESSAGE);
+  }
+
+  const delimiter = match[1];
+
+  if (/^\d+$/.test(delimiter)) {
+    throw new Error(ERROR_MESSAGE.CUSTOM_ERROR_MESSAGE);
+  }
+
+  return delimiter;
 }
