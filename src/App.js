@@ -1,6 +1,10 @@
-import { Console } from "@woowacourse/mission-utils";
-import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "./constants.js";
-import { validateAllowedCharacters, validateCustomDelimiterSyntax, validateIsNumber } from "./validation.js";
+import { Console } from '@woowacourse/mission-utils';
+import { INPUT_MESSAGE, OUTPUT_MESSAGE } from './constants.js';
+import {
+  validateAllowedCharacters,
+  validateCustomDelimiterSyntax,
+  validateIsNumber,
+} from './validation.js';
 
 class App {
   async run() {
