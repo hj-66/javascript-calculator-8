@@ -37,11 +37,8 @@ class App {
 
   calculateSum() {
     const separatedArray = this.splitInput();
-    separatedArray.forEach((value) => {
-      validateIsNumber(value);
-    });
-    const resultSum = separatedArray.reduce((a, b) => parseInt(a) + parseInt(b), 0);
-    return resultSum;
+    separatedArray.forEach((value) => validateIsNumber(value));
+    return separatedArray.reduce((sum, value) => sum + parseInt(value, 10), 0);
   }
 }
 
